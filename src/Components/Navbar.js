@@ -1,21 +1,29 @@
-import React,{ useState, useEffect } from "react";
+import React,{ useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../App.css";
 import { Link } from "react-router-dom";
 import { getCartProducts } from '../api/posts'
+import { useSelector } from "react-redux";
+
 
 function Navbar() {
 
-  const [cartCount, setCartCount] = useState([]);
+  const cart = useSelector((state) => state.cart.cart);
+  // const dispatch = useDispatch();
+  const  [count,setCount] = useState(0)
+  const fetchData = () => {
+    getCartProducts()
+      .then((val) => {
+        setCount(val.data.length)
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+  useEffect(() => {
+    fetchData();
+  }, [cart]);
 
-  useEffect(()=>{
-    getCartProducts().then((val)=>{
-      //console.log("Card Data :- ", val.data);
-      setCartCount(val.data)
-    }).catch((err)=>{
-      console.log(err.message);
-    })
-  }, [])
   return (
     <div className="App-header sticky">
       <div className="container-fluid">
@@ -54,7 +62,7 @@ function Navbar() {
                 <div className="col-md-5">
                 <button type="button" class="btn btn-secondary ms-2">
                       <Link to="/cart" style={{ color: "#fff" }}>
-                        Cart {cartCount.length}
+                        Cart {count}
                       </Link>
                 </button>
                 </div>

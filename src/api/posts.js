@@ -13,6 +13,10 @@ export const getCartProducts = ()=> {
     return axios.get('http://localhost:3500/cart')
 }
 
+export const getCardProductById = (id)=> {
+    return axios.get(`http://localhost:3500/cart/${id}`)
+}
+
 export const deleteCartProducts = (id)=> {
     return axios.delete(`http://localhost:3500/cart/${id}`)
 }

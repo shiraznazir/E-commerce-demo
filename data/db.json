@@ -31,5 +31,27 @@
       "description": "We will study about mango"
     }
   ],
-  "cart": []
+  "cart": [
+    {
+      "id": 3,
+      "name": "Banana",
+      "image": "https://www.thespruce.com/thmb/NvaI2200Awo-9Yqgg3RTH599ftg=/700x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/do-bananas-have-seeds-3269378-02-f28932b42ec64690afaeffde50a113b1.jpg",
+      "description": "We will study about banana",
+      "qty": 1
+    },
+    {
+      "id": 1,
+      "name": "Tomato",
+      "image": "https://img.krishijagran.com/media/65013/tomatoes.jpg",
+      "description": "We will study about tomato",
+      "qty": 20
+    },
+    {
+      "id": 5,
+      "name": "Mango sweet",
+      "image": "https://www.thespruce.com/thmb/PSPLbOQ0gp6Ss-s4C-FOcb9QfrM=/2805x2805/smart/filters:no_upscale()/grow-mango-seeds-1902625-hero-f222c4c0a3ad4b24a70948ddcec9e5e6.jpg",
+      "description": "We will study about mango",
+      "qty": 1
+    }
+  ]
 }

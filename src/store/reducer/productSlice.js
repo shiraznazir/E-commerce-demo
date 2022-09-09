@@ -7,10 +7,10 @@ const products = createSlice({
     initialState,
     reducers: {
         setProduct: (state,action) =>  {
-            state.products = action.payload.data
+            console.log("action",action.payload)
+            state.products = action.payload
         }
     }
-
 })
 
 export const { setProduct } = products.actions

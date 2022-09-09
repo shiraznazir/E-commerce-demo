@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getCartProducts } from "../api/posts";
 import { deleteCartProducts } from "../api/posts";
 import { updateCartProducts } from "../api/posts";
+import { useDispatch, useSelector } from "react-redux";
+import { setCart } from "../store/reducer/cartSlice";
 
 function Cart() {
-  const [cart, setCart] = useState([]);
+  
+  const cart = useSelector((state) => state.cart.cart)
+  const dispatch = useDispatch()
 
   const fetchData = () => {
     getCartProducts()
       .then((val) => {
-        //console.log("Card Data :- ", val.data);
-        setCart(val.data);
+        dispatch(setCart(val.data))
       })
       .catch((err) => {
         console.log(err.message);
@@ -29,18 +32,19 @@ function Cart() {
   };
   const decreaseProduct = (element) => {
     if (element.qty > 1) {
-      element.qty = element.qty - 1;
-      updateProducts(element);
+      const data = {...element, qty: element.qty-1}
+      updateProducts(data);
     }
   };
 
   const increaseProduct = (element) => {
-    element.qty = element.qty + 1;
-    updateProducts(element);
+    const data = {...element, qty: element.qty+1}
+    updateProducts(data);
   };
+
   return (
     <div style={{ marginTop: "100px" }}>
-      {cart.length === 0 ? (
+      {cart && cart.length === 0 ? (
         <h1 class="text-center">Add Some Items in Cart</h1>
       ) : (
         <div className="container">
@@ -48,7 +52,7 @@ function Cart() {
             className="row"
             style={{ marginTop: "20px", paddingottom: "10px" }}
           >
-            {cart.map((element) => {
+            {cart.length && cart.map((element) => {
               return (
                 <div className="col-md-3  p-4">
                   <div className="card" style={{ width: "18rem" }}>
